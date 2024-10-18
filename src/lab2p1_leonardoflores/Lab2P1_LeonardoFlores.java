@@ -16,7 +16,7 @@ public class Lab2P1_LeonardoFlores {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int op, tab1, tab2, mult1=0, mult2=0, resp1, resp2, puntos_j, puntos_c, opj2, ronda=1;
+        int op, tab1, tab2, mult1=0, mult2=0, resp1, resp2, puntos_j, puntos_c, opj2, ronda=1, trap, abajo, arriba=1 ;
         Scanner yoko = new Scanner(System.in);
         Random hattori = new Random();
         System.out.println("Menu de Opciones");
@@ -52,6 +52,7 @@ public class Lab2P1_LeonardoFlores {
                 System.out.println(" ");
             }
             else if (op==2) {
+                ronda=1;
                 puntos_j = (hattori.nextInt(10)+1);
                 puntos_c = (hattori.nextInt(10)+1);
                 System.out.println("Ronda: "+ronda);
@@ -64,7 +65,7 @@ public class Lab2P1_LeonardoFlores {
                 System.out.println("3) Seguir");
                 System.out.println("4) Terminar");
                 opj2 = yoko.nextInt();
-                while (ronda<=3 || opj2!=4 || puntos_j<21 || puntos_c<21) {
+                while (ronda<3 && puntos_j<20 && puntos_c<20) {
                     if (opj2==1) {
                         puntos_j++;
                     }
@@ -73,6 +74,13 @@ public class Lab2P1_LeonardoFlores {
                     }
                     else if (opj2==3) {
                         ronda++;
+                        puntos_c = puntos_c + hattori.nextInt(10)+1;
+                    }
+                    else if (opj2==4) {
+                        ronda++;
+                        puntos_c = puntos_c + hattori.nextInt(10)+1;
+                        ronda++;
+                        puntos_c = puntos_c + hattori.nextInt(10)+1;
                     }
                     else if (opj2>4) {
                         System.out.println("Ingrese una opcion aceptable");
@@ -88,10 +96,10 @@ public class Lab2P1_LeonardoFlores {
                     System.out.println("4) Terminar");
                     opj2 = yoko.nextInt();
                 }
-                if (puntos_j>puntos_c && puntos_j<=21) {
+                if (puntos_j>puntos_c && puntos_j<21) {
                     System.out.println("Hooray! has ganado chaval");
                 }
-                else if (puntos_c>puntos_j && puntos_c<=21) {
+                else if (puntos_c>puntos_j && puntos_c<21) {
                     System.out.println("Womp womp has perdido");
                 }
                 else {
@@ -99,12 +107,34 @@ public class Lab2P1_LeonardoFlores {
                 }
             }
             else if (op==3) {
-                System.out.println("sex");
-            }
+                System.out.println("Ingrese el porcentaje del trapecio");
+                System.out.println("1- 25%");
+                System.out.println("2- 50%");
+                System.out.println("3- 75%");
+                System.out.println("4- 100%");
+                trap = yoko.nextInt();
+                abajo=12;
+                
+                while (arriba<12) {
+                    
+                    System.out.println("*");
+                    while (abajo>12) {
+                        System.out.print(" ");
+                        abajo=abajo-1;
+                    }
+                    arriba++;
+                }
+            }    
             else if (op>4) {
-                System.out.println("Ingrese una opcion correcta carechimba");
+                System.out.println("Ingrese una opcion correcta");
             }
+        System.out.println("Menu de Opciones");
+        System.out.println("1-Numeros comunes en multiplicacion");
+        System.out.println("2-Juego de suerte");
+        System.out.println("3-Llenar el trapecio");
+        System.out.println("4-salida");
+        System.out.println("Elija una opcion:");
+        op = yoko.nextInt();
         }
-    }
-    
+    }   
 }
